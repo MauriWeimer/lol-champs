@@ -1,7 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../theme/colors.dart';
+import '../widgets/champions_grid_item.dart';
 import '../services/lol_service.dart';
 import '../models/champion.dart';
 
@@ -28,19 +27,7 @@ class ChampionsScreen extends StatelessWidget {
         mainAxisSpacing: 16.0,
         children: List.generate(
           champions.length,
-          (i) => _buildChampionItem(champions[i]),
-        ),
-      );
-
-  Widget _buildChampionItem(Champion champion) => Container(
-        decoration: BoxDecoration(
-          color: kPrimaryColor,
-          borderRadius: BorderRadius.circular(8.0),
-          image: DecorationImage(
-            image: CachedNetworkImageProvider(
-              champion.avatar,
-            ),
-          ),
+          (i) => ChampionsGridItem(champion: champions[i]),
         ),
       );
 }
