@@ -38,4 +38,12 @@ class LolService {
         )
         .toList();
   }
+
+  Future<Champion> getChampion(String id) async {
+    final url = '$_baseUrl/champion/$id.json';
+    final response = await http.get(url);
+    final data = jsonDecode(response.body)['data'] as Map;
+
+    return Champion.fromMap(data[id], null);
+  }
 }

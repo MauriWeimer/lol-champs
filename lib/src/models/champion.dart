@@ -1,19 +1,34 @@
+import './skin.dart';
+
 class Champion {
   final String key;
+  final String id;
   final String name;
   final String title;
   final String lore;
   final String avatar;
-  //final ....
+  final List<Skin> skins;
 
-  const Champion({this.key, this.name, this.title, this.lore, this.avatar});
+  const Champion({
+    this.key,
+    this.id,
+    this.name,
+    this.title,
+    this.lore,
+    this.avatar,
+    this.skins,
+  });
 
   factory Champion.fromMap(Map<String, dynamic> map, String avatar) => Champion(
         key: map['key'],
+        id: map['id'],
         name: map['name'],
         title: map['title'],
         lore: map['lore'],
         avatar: avatar,
+        skins: (map['skins'] as List)
+            ?.map((skinMap) => Skin.fromMap(skinMap, map['id']))
+            ?.toList(),
       );
 
   @override
