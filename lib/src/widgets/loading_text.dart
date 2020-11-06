@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../theme/colors.dart';
 
-class TextLoading extends StatelessWidget {
+class LoadingText extends StatelessWidget {
   final double width;
 
-  const TextLoading({Key key, this.width = 64.0}) : super(key: key);
+  const LoadingText({Key key, this.width = 64.0}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -46,21 +46,10 @@ class ChampionsScreen extends StatelessWidget {
                   onTap: () => Navigator.push(
                     context,
                     PageRouteBuilder(
-                      pageBuilder: (context, animation, secondaryAnimation) {
-                        var begin = Offset(1.0, 0.0);
-                        var end = Offset.zero;
-                        var tween = Tween(begin: begin, end: end);
-                        var offsetAnimation = animation.drive(tween);
-
-                        return SlideTransition(
-                          position: offsetAnimation,
-                          child: ChampionDetailsScreen(
-                            championId: champion.id,
-                          ),
-                        );
-                      },
-                      transitionsBuilder:
-                          (context, animation, secondaryAnimation, child) {
+                      pageBuilder: (_, __, ___) => ChampionDetailsScreen(
+                        championId: champion.id,
+                      ),
+                      transitionsBuilder: (_, animation, __, child) {
                         var begin = Offset(0.0, 1.0);
                         var end = Offset.zero;
                         var tween = Tween(begin: begin, end: end);

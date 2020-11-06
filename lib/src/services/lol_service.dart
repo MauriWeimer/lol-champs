@@ -11,8 +11,11 @@ class LolService {
 
   final String _baseUrl;
   final String _avatarUrl;
+  final String _passiveUrl;
+  final String _spellsUrl;
 
-  LolService._(this._baseUrl, this._avatarUrl);
+  LolService._(
+      this._baseUrl, this._avatarUrl, this._passiveUrl, this._spellsUrl);
 
   static Future<void> init() async {
     if (_instance == null) {
@@ -23,6 +26,8 @@ class LolService {
       _instance = LolService._(
         'http://ddragon.leagueoflegends.com/cdn/$version/data/en_US',
         'http://ddragon.leagueoflegends.com/cdn/$version/img/champion',
+        'http://ddragon.leagueoflegends.com/cdn/$version/img/passive',
+        'http://ddragon.leagueoflegends.com/cdn/$version/img/spell',
       );
     }
   }
@@ -34,7 +39,7 @@ class LolService {
 
     return data.values
         .map(
-          (map) => Champion.fromMap(map, '$_avatarUrl/${map['image']['full']}'),
+          (map) => Champion.fromMap(map, _avatarUrl, null, null),
         )
         .toList();
   }
@@ -44,6 +49,6 @@ class LolService {
     final response = await http.get(url);
     final data = jsonDecode(response.body)['data'] as Map;
 
-    return Champion.fromMap(data[id], null);
+    return Champion.fromMap(data[id], null, _passiveUrl, _spellsUrl);
   }
 }

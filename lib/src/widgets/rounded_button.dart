@@ -61,14 +61,20 @@ class _RoundedButtonState extends State<RoundedButton>
           borderRadius: BorderRadius.circular(8.0),
           child: widget.child,
         ),
-        onTapDown: (_) => _animationController.reverse(),
-        onLongPressEnd: (_) => _animationController.forward(),
-        onTap: () => _animationController.reverse().then(
-          (_) {
-            widget.onTap?.call();
-            _animationController.forward();
-          },
-        ),
+        onTapDown: (widget.onTap == null)
+            ? null
+            : (_) => _animationController.reverse(),
+        onLongPressEnd: (widget.onTap == null)
+            ? null
+            : (_) => _animationController.forward(),
+        onTap: (widget.onTap == null)
+            ? null
+            : () => _animationController.reverse().then(
+                  (_) {
+                    widget.onTap?.call();
+                    _animationController.forward();
+                  },
+                ),
       ),
     );
   }

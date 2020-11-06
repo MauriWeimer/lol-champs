@@ -10,7 +10,6 @@ dependencies:
     sdk: flutter
 
   http: ^0.12.2
-  font_awesome_flutter: ^8.10.0
   cached_network_image: ^2.3.3
 
 flutter:
@@ -26,3 +25,8 @@ flutter:
           weight: 500
         - asset: assets/fonts/WorkSans-Bold.ttf
           weight: 700
+
+    
+    - family:  LolIcons
+      fonts:
+        - asset: assets/fonts/LolIcons.ttf
